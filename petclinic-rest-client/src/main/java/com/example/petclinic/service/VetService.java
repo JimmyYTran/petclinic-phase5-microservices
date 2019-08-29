@@ -52,7 +52,7 @@ public class VetService {
 
     public void modifyVet(Vet vet) {
 
-        URI uri = URI.create("http://localhost:8083/vetapi/vet/updateVet");
+        URI uri = URI.create("http://localhost:8083/vetapi/vet/modifyVet");
 
         restTemplate.put(uri, vet);
 
