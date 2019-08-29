@@ -52,7 +52,7 @@ public class VisitService {
 
     public void modifyVisit(Visit visit) {
 
-        URI uri = URI.create("http://localhost:8084/visitapi/visit/updateVisit");
+        URI uri = URI.create("http://localhost:8084/visitapi/visit/modifyVisit");
 
         restTemplate.put(uri, visit);
 

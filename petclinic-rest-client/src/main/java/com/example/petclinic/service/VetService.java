@@ -71,4 +71,22 @@ public class VetService {
 
         return true;
     }
+
+    public List<Vet> getVetByName(String name) {
+        // string replacement needed to create proper URL
+        String modifiedName = name.replaceAll(" ", "%20");
+        URI uri = URI.create("http://localhost:8083/vetapi/vet/getVetByName/" + modifiedName);
+
+        List<LinkedHashMap<String, String>> response = restTemplate.getForObject(uri, List.class);
+
+        ObjectMapper mapper = new ObjectMapper();
+        List<Vet> vets = mapper.convertValue(response, new TypeReference<List<Vet>>() {
+        });
+
+        log.info(new StringBuilder().append("Returning vet [").append(name).append("].").toString());
+
+        return vets;
+
+    }
+
 }

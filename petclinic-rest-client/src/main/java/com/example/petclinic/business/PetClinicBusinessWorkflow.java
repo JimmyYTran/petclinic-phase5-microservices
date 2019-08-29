@@ -118,11 +118,7 @@ public class PetClinicBusinessWorkflow {
         petService.savePet(pet12);
         petService.savePet(pet13);
         petService.savePet(pet14);
-/*
-        // Test getAllPets
-        List<Pet> pets = petService.getAllPets();
-        pets.forEach(pet -> log.info(pet.toString()));
-*/
+
         // Create visits
         Visit visit1 = Visit.builder().withDateOfVisit(new Date()).withDescription("Nice Visit!").build();
         Visit visit2 = Visit.builder().withDateOfVisit(new Date()).withDescription("Bad Visit!").build();
@@ -158,6 +154,23 @@ public class PetClinicBusinessWorkflow {
         modifiedVet.setName("Neutral Vet");
 
         vetService.modifyVet(modifiedVet);
+
+        // Test getVetByName
+        String searchForVet = "OutstandingVet";
+        List<Vet> neutralVets = vetService.getVetByName(searchForVet);
+
+        AtomicInteger counter2 = new AtomicInteger(1);
+        neutralVets.forEach(vet -> {
+
+            StringBuilder sb = new StringBuilder();
+            sb.append(searchForVet);
+            sb.append(" ");
+            sb.append(counter2.getAndIncrement());
+            sb.append(": ");
+            sb.append(vet);
+
+            log.info(sb.toString());
+        });
 
         // Test deleteVet
         vetService.deleteVet(vets.get(1));
